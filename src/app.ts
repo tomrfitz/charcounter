@@ -70,12 +70,25 @@ testTwoSum(testCase);
 function isPalindrome(x: number): boolean {
   const str = x.toString().split("");
   const strReverse = x.toString().split("").reverse();
-  console.log(str, strReverse);
   return str.join("") === strReverse.join("");
 }
 
-function testIsPalindrome() {
-  const x = 121;
-  const result = isPalindrome(x);
-  console.log(result);
+const paliTestCases = new Map<number, boolean>();
+paliTestCases.set(121, true);
+paliTestCases.set(-121, false);
+paliTestCases.set(10, false);
+paliTestCases.set(-101, false);
+
+function testIsPalindrome(paliTestCases: Map<number, boolean>) {
+  var result = new Array();
+  for (const [x, expected] of paliTestCases) {
+    result.push(isPalindrome(x) === expected);
+  }
+  if (result.includes(false) || result.includes(undefined)) {
+    console.log("Failed");
+  } else {
+    console.log("Passed");
+  }
 }
+
+testIsPalindrome(paliTestCases);
