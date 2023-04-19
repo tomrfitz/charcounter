@@ -68,7 +68,8 @@ function twoSum(nums, target) {
         }
     }
     catch (e) {
-        console.log(e);
+        if (e instanceof TypeError)
+            return [];
     }
     return [];
 }
@@ -84,11 +85,22 @@ function testTwoSum(testCase) {
         console.log("Passed twosum test cases");
     }
 }
-const testCase = new Map();
-testCase.set([2, 7, 11, 15], 9);
-testCase.set([3, 2, 4], 6);
-testCase.set([3, 3], 6);
-testTwoSum(testCase);
+const twoSumTestCase = new Map();
+twoSumTestCase.set([2, 7, 11, 15], 9); // [first, inner]
+twoSumTestCase.set([3, 2, 4], 6); // [inner, last]
+twoSumTestCase.set([3, 3], 6); // [0, 1] only two items in list
+twoSumTestCase.set([3, 2, 3], 6); // [first, last]
+twoSumTestCase.set([4, 0, 0, 3], 0); // [inner, inner] and target of 0
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set(null, []); // null case
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set("", []); // empty string case
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set("121", []); // string case with numbers
+testTwoSum(twoSumTestCase);
 function isPalindrome(x) {
     try {
         const str = x.toString().split("").join("");
@@ -96,7 +108,8 @@ function isPalindrome(x) {
         return str === strReverse;
     }
     catch (e) {
-        console.log(e);
+        if (e instanceof TypeError)
+            return false;
     }
 }
 function testIsPalindrome(paliTestCases) {
@@ -112,9 +125,18 @@ function testIsPalindrome(paliTestCases) {
     }
 }
 const paliTestCases = new Map();
-paliTestCases.set(121, true);
-paliTestCases.set(-121, false);
-paliTestCases.set(10, false);
-paliTestCases.set(-101, false);
-paliTestCases.set(null, false); // @ts-expect-error
+paliTestCases.set(121, true); // three digit
+paliTestCases.set(-121, false); // negative palindrome
+paliTestCases.set(10, false); // two digit
+paliTestCases.set(-10, false); // negative non palindrome
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set(null, false); // null case
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set("", true); // empty string
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set("121", true); // string of numbers
+paliTestCases.set(1, true); // single digit
 testIsPalindrome(paliTestCases);
