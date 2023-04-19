@@ -47,7 +47,7 @@ function twoSum(nums: number[], target: number): number[] {
       map.set(nums[i], i);
     }
   } catch (e) {
-    console.log(e);
+    if (e instanceof TypeError) return [];
   }
   return [];
 }
@@ -64,12 +64,23 @@ function testTwoSum(testCase: Map<number[], number>) {
   }
 }
 
-const testCase = new Map<number[], number>();
-testCase.set([2, 7, 11, 15], 9);
-testCase.set([3, 2, 4], 6);
-testCase.set([3, 3], 6);
+const twoSumTestCase = new Map<number[], number>();
+twoSumTestCase.set([2, 7, 11, 15], 9); // [first, inner]
+twoSumTestCase.set([3, 2, 4], 6); // [inner, last]
+twoSumTestCase.set([3, 3], 6); // [0, 1] only two items in list
+twoSumTestCase.set([3, 2, 3], 6); // [first, last]
+twoSumTestCase.set([4, 0, 0, 3], 0); // [inner, inner] and target of 0
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set(null, []); // null case
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set("", []); // empty string case
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+twoSumTestCase.set("121", []); // string case with numbers
 
-testTwoSum(testCase);
+testTwoSum(twoSumTestCase);
 
 function isPalindrome(x: number) {
   try {
@@ -77,7 +88,7 @@ function isPalindrome(x: number) {
     const strReverse = x.toString().split("").reverse().join("");
     return str === strReverse;
   } catch (e) {
-    console.log(e);
+    if (e instanceof TypeError) return false;
   }
 }
 
@@ -98,5 +109,14 @@ paliTestCases.set(121, true);
 paliTestCases.set(-121, false);
 paliTestCases.set(10, false);
 paliTestCases.set(-101, false);
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set(null, false);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set("", true);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+paliTestCases.set("121", true);
+paliTestCases.set(1, true);
 testIsPalindrome(paliTestCases);

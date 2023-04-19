@@ -59,38 +59,62 @@ const maxChar = getMostCommonChar(file);
 console.log("The most common character in", file, "is", "'", maxChar, "'");
 function twoSum(nums, target) {
     let map = new Map();
-    for (let i = 0; i < nums.length; i++) {
-        var complement = target - nums[i];
-        if (map.has(complement))
-            return [map.get(complement), i];
-        map.set(nums[i], i);
+    try {
+        for (let i = 0; i < nums.length; i++) {
+            var complement = target - nums[i];
+            if (map.has(complement))
+                return [map.get(complement), i];
+            map.set(nums[i], i);
+        }
+    }
+    catch (e) {
+        console.log(e);
     }
     return [];
 }
-const testCase = new Map();
-testCase.set([2, 7, 11, 15], 9);
-testCase.set([3, 2, 4], 6);
-testCase.set([3, 3], 6);
 function testTwoSum(testCase) {
     var result = new Array();
     for (const [nums, target] of testCase) {
         result.push(twoSum(nums, target));
     }
     if (result.includes(false) || result.includes(undefined)) {
-        console.log("Failed");
+        console.log("Failed twosum test cases");
     }
     else {
-        console.log("Passed");
+        console.log("Passed twosum test cases");
     }
 }
+const testCase = new Map();
+testCase.set([2, 7, 11, 15], 9);
+testCase.set([3, 2, 4], 6);
+testCase.set([3, 3], 6);
+testTwoSum(testCase);
 function isPalindrome(x) {
-    const str = x.toString().split("");
-    const strReverse = x.toString().split("").reverse();
-    console.log(str, strReverse);
-    return str.join("") === strReverse.join("");
+    try {
+        const str = x.toString().split("").join("");
+        const strReverse = x.toString().split("").reverse().join("");
+        return str === strReverse;
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
-function testIsPalindrome() {
-    const x = 121;
-    const result = isPalindrome(x);
-    console.log(result);
+function testIsPalindrome(paliTestCases) {
+    var results = new Array();
+    for (const [x, expected] of paliTestCases) {
+        results.push(isPalindrome(x) === expected);
+    }
+    if (results.includes(false) || results.includes(undefined)) {
+        console.log("Failed pali test cases");
+    }
+    else {
+        console.log("Passed pali test cases");
+    }
 }
+const paliTestCases = new Map();
+paliTestCases.set(121, true);
+paliTestCases.set(-121, false);
+paliTestCases.set(10, false);
+paliTestCases.set(-101, false);
+paliTestCases.set(null, false); // @ts-expect-error
+testIsPalindrome(paliTestCases);
