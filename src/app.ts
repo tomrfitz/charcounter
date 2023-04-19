@@ -48,9 +48,22 @@ function twoSum(nums: number[], target: number): number[] {
   return [];
 }
 
+function testTwoSum() {
+  const nums = [2, 7, 11, 15];
+  const target = 9;
+  const result = twoSum(nums, target);
+  console.log(result);
+}
+
 function isPalindrome(x: number): boolean {
   const str = x.toString().split("");
   const strReverse = x.toString().split("").reverse();
   console.log(str, strReverse);
   return str.join("") === strReverse.join("");
+}
+
+function testIsPalindrome() {
+  const x = 121;
+  const result = isPalindrome(x);
+  console.log(result);
 }
