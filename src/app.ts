@@ -48,12 +48,24 @@ function twoSum(nums: number[], target: number): number[] {
   return [];
 }
 
-function testTwoSum() {
-  const nums = [2, 7, 11, 15];
-  const target = 9;
-  const result = twoSum(nums, target);
-  console.log(result);
+const testCase = new Map<number[], number>();
+testCase.set([2, 7, 11, 15], 9);
+testCase.set([3, 2, 4], 6);
+testCase.set([3, 3], 6);
+
+function testTwoSum(testCase: Map<number[], number>) {
+  var result = new Array();
+  for (const [nums, target] of testCase) {
+    result.push(twoSum(nums, target));
+  }
+  if (result.includes(false) || result.includes(undefined)) {
+    console.log("Failed");
+  } else {
+    console.log("Passed");
+  }
 }
+
+testTwoSum(testCase);
 
 function isPalindrome(x: number): boolean {
   const str = x.toString().split("");

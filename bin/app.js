@@ -56,7 +56,7 @@ function getMostCommonChar(fileName) {
 }
 let file = "kjb.txt";
 const maxChar = getMostCommonChar(file);
-console.log("The most common character in", file, "is", maxChar);
+console.log("The most common character in", file, "is", "'", maxChar, "'");
 function twoSum(nums, target) {
     let map = new Map();
     for (let i = 0; i < nums.length; i++) {
@@ -67,9 +67,30 @@ function twoSum(nums, target) {
     }
     return [];
 }
+const testCase = new Map();
+testCase.set([2, 7, 11, 15], 9);
+testCase.set([3, 2, 4], 6);
+testCase.set([3, 3], 6);
+function testTwoSum(testCase) {
+    var result = new Array();
+    for (const [nums, target] of testCase) {
+        result.push(twoSum(nums, target));
+    }
+    if (result.includes(false) || result.includes(undefined)) {
+        console.log("Failed");
+    }
+    else {
+        console.log("Passed");
+    }
+}
 function isPalindrome(x) {
     const str = x.toString().split("");
     const strReverse = x.toString().split("").reverse();
     console.log(str, strReverse);
     return str.join("") === strReverse.join("");
+}
+function testIsPalindrome() {
+    const x = 121;
+    const result = isPalindrome(x);
+    console.log(result);
 }
