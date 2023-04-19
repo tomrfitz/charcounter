@@ -105,18 +105,18 @@ function testIsPalindrome(paliTestCases: Map<number, boolean>) {
 }
 
 const paliTestCases = new Map<number, boolean>();
-paliTestCases.set(121, true);
-paliTestCases.set(-121, false);
-paliTestCases.set(10, false);
-paliTestCases.set(-101, false);
+paliTestCases.set(121, true); // three digit
+paliTestCases.set(-121, false); // negative palindrome
+paliTestCases.set(10, false); // two digit
+paliTestCases.set(-10, false); // negative non palindrome
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-paliTestCases.set(null, false);
+paliTestCases.set(null, false); // null case
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-paliTestCases.set("", true);
+paliTestCases.set("", true); // empty string
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-paliTestCases.set("121", true);
-paliTestCases.set(1, true);
+paliTestCases.set("121", true); // string of numbers
+paliTestCases.set(1, true); // single digit
 testIsPalindrome(paliTestCases);
