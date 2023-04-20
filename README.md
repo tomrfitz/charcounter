@@ -1,5 +1,12 @@
 # Week 2
 
+```bash
+git clone https://github.com/tomrfitz/charcounter.git
+cd charcounter
+yarn install
+yarn dev
+```
+
 Project:
 
 1. Build a basic Typescript Nodejs program that reads a txt file and prints the most common character to console (pick the right data structure!).
