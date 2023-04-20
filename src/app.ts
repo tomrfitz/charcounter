@@ -2,8 +2,12 @@ import * as fs from "fs";
 const getFileContents = (fileName: string): string =>
   fs.readFileSync(fileName, "utf8") as string;
 
-const getCharCount = (fileContents: string): { [key: string]: number } => {
-  const charCount = {} as { [key: string]: number };
+interface ReturnType {
+  [key: string]: number;
+}
+
+const getCharCount = (fileContents: string): ReturnType => {
+  const charCount = {} as ReturnType;
   for (const char of fileContents) {
     if (!charCount[char]) {
       // check if new char

@@ -54,7 +54,7 @@ const getMaxChar = (charCount) => {
 function getMostCommonChar(fileName) {
     return getMaxChar(getCharCount(getFileContents(fileName)));
 }
-let file = "kjb.txt";
+let file = "test.txt";
 const maxChar = getMostCommonChar(file);
 console.log("The most common character in", file, "is", "'", maxChar, "'");
 function twoSum(nums, target) {

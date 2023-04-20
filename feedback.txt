@@ -1,0 +1,45 @@
+1. I would wrap this in try/catch, reading files can easily fail because the file you expect might not be there.
+
+function getMostCommonChar(fileName: string): string {
+  return getMaxChar(getCharCount(getFileContents(fileName)));
+}
+
+
+
+2. Convention would be to define { [key: string]: number } as a type or interface
+
+like this:
+
+interface ReturnType {
+  [key: string]: number;
+}
+
+const getCharCount = (fileContents: string): ReturnType => {
+  const charCount = {} as ReturnType;
+    .....
+
+
+
+3. Usually palindrome takes in a string, not number but it's not a big deal here.
+
+
+
+4. Question for you to answer: What is the big(O) of your two-sum function?
+
+Video if you don't know what big(O) is:
+https://www.youtube.com/watch?v=BgLTDT03QtU
+
+function twoSum(nums: number[], target: number): number[] {
+  let map = new Map();
+  try {
+    for (let i = 0; i < nums.length; i++) {
+      var complement = target - nums[i];
+      if (map.has(complement)) return [map.get(complement), i];
+      map.set(nums[i], i);
+    }
+  } catch (e) {
+    if (e instanceof TypeError) return [];
+  }
+  return [];
+}
+
